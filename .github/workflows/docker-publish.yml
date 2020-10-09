@@ -1,0 +1,32 @@
+name: Docker
+
+on:
+  release:
+    branches: main
+    types: [published]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Env
+        run: |
+          echo "GITHUB_REF = $GITHUB_REF"
+          # Set Tag
+          export TAG=${GITHUB_REF#refs/tags/}
+          echo "TAG=$TAG" >> $GITHUB_ENV
+          # Set Image Name
+          export IMAGE_NAME=$(echo $TAG | cut -f1 -d'/')
+          echo $IMAGE_NAME
+          echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV
+          # Set Release Version
+          export RELEASE_VERSION=$(echo $TAG | cut -f2 -d'/')
+          echo $RELEASE_VERSION
+          echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
+      - name: Build image
+        run: |
+          echo "IMAGE_NAME = $IMAGE_NAME"
+          echo "RELEASE_VERSION = $RELEASE_VERSION"
+          echo "RELEASE_VERSION = $RELEASE_VERSION"
+          docker build . --file $(IMAGE_NAME)/Dockerfile --tag $(IMAGE_NAME):$(RELEASE_VERSION) --build-arg DOCKER_COMPOSE_VERSION=1.27.2 --build-arg GO_VERSION=1.15.2 --build-arg NODE_VERSION=12.19.0
