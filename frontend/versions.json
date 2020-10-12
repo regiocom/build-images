@@ -1,0 +1,20 @@
+{
+  "include": [
+    {
+      "name": "lts",
+      "dependencies": {
+        "docker_compose": "1.27.2",
+        "node": "12.x",
+        "go": "1.14.9"
+      }
+    },
+    {
+      "name": "latest",
+      "dependencies": {
+        "docker_compose": "1.27.4",
+        "node": "14.x",
+        "go": "1.15.2"
+      }
+    }
+  ]
+}
