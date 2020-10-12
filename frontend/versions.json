@@ -4,7 +4,8 @@
       "name": "lts",
       "dependencies": {
         "docker_compose": "1.27.2",
-        "node": "12.x",
+        "nvm": "v0.36.0",
+        "node": "12.19.0",
         "go": "1.14.9"
       }
     },
@@ -12,7 +13,8 @@
       "name": "latest",
       "dependencies": {
         "docker_compose": "1.27.4",
-        "node": "14.x",
+        "nvm": "v0.36.0",
+        "node": "14.13.1",
         "go": "1.15.2"
       }
     }
