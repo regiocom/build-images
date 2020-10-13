@@ -15,5 +15,3 @@ RUN apt-get update && \
     npm -g install yarn && \
     # Install go
     curl -L "https://golang.org/dl/go${go}.linux-amd64.tar.gz" | tar -xz -C /usr/local
-
-ENTRYPOINT ["/bin/bash", "-c"]
