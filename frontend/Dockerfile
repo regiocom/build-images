@@ -5,6 +5,8 @@ ARG nvm
 ARG go
 ARG node
 
+ENV PATH /usr/local/go/bin:$PATH
+
 RUN apt-get update && \
     # Install curl, git and cypress dependencies
     apt-get -y install curl git libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb procps && \
@@ -15,7 +17,6 @@ RUN apt-get update && \
     nvm install ${node} && \
     npm -g install yarn && \
     # Install go
-    curl -L "https://golang.org/dl/go${go}.linux-amd64.tar.gz" | tar -xz -C /usr/local && \
-    echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
+    curl -L "https://golang.org/dl/go${go}.linux-amd64.tar.gz" | tar -xz -C /usr/local
 
 CMD ["bash"]
