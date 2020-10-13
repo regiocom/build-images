@@ -14,6 +14,7 @@ RUN apt-get update && \
     apt-get install -y nodejs && \
     npm -g install yarn && \
     # Install go
-    curl -L "https://golang.org/dl/go${go}.linux-amd64.tar.gz" | tar -xz -C /usr/local
+    curl -L "https://golang.org/dl/go${go}.linux-amd64.tar.gz" | tar -xz -C /usr/local && \
+    echo "dash dash/sh boolean false" | debconf-set-selections
 
 ENTRYPOINT ["/bin/bash", "-c"]
