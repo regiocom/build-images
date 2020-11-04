@@ -1,3 +1,4 @@
+ARG gitversion
 FROM  gittools/gitversion:${gitversion}
 
 RUN apk add --no-cache git
