@@ -1,0 +1,10 @@
+{
+  "include": [
+    {
+      "name": "latest",
+      "dependencies": {
+        "gitversion": "5.5.1-linux-alpine.3.10-x64-netcoreapp3.1"
+      }
+    }
+  ]
+}
