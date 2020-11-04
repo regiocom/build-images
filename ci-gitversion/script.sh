@@ -1,3 +1,5 @@
+#!/bin/sh
+
 git fetch --unshallow
 git fetch --all
 echo "CREATE SHARED VARIABLES"
