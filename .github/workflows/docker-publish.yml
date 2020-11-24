@@ -65,6 +65,9 @@ jobs:
           export BUILD_ARGS=$(echo "$MATRIX_CONTEXT" | jq -r '.dependencies' | jq -r 'to_entries[] | "--build-arg \(.key)=\(.value)"')
           echo $BUILD_ARGS
 
+          # Login to Github Docker Package Registry
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+
           # Build and Tag Image
           docker build . \
           --file ${IMAGE_NAME}/Dockerfile \
@@ -73,7 +76,6 @@ jobs:
           $BUILD_ARGS
 
           # Push Image to Dockerhub
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login -u $GITHUB_ACTOR --password-stdin
           docker push docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }}
           docker push docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${{ matrix.name }}
 
