@@ -68,17 +68,17 @@ jobs:
           # Build and Tag Image
           docker build . \
           --file ${IMAGE_NAME}/Dockerfile \
-          --tag regiocom/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }} \
-          --tag regiocom/${IMAGE_NAME}:${{ matrix.name }} \
+          --tag docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }} \
+          --tag docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${{ matrix.name }} \
           $BUILD_ARGS
 
           # Push Image to Dockerhub
-          echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
-          docker push regiocom/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }}
-          docker push regiocom/${IMAGE_NAME}:${{ matrix.name }}
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login -u $GITHUB_ACTOR --password-stdin
+          docker push docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }}
+          docker push docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${{ matrix.name }}
 
           # If the version is named latest then additionally tag the docker image only with the version and push it to Dockerhub
           if [ ${{ matrix.name }} == "latest" ]; then \
-          docker tag regiocom/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }} regiocom/${IMAGE_NAME}:${RELEASE_VERSION}; \
-          docker push regiocom/${IMAGE_NAME}:${RELEASE_VERSION}; \
+          docker tag docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }} regiocom/${IMAGE_NAME}:${RELEASE_VERSION}; \
+          docker push docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}; \
           fi
