@@ -81,6 +81,6 @@ jobs:
 
           # If the version is named latest then additionally tag the docker image only with the version and push it to Dockerhub
           if [ ${{ matrix.name }} == "latest" ]; then \
-          docker tag docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }} regiocom/${IMAGE_NAME}:${RELEASE_VERSION}; \
+          docker tag docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }} docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}; \
           docker push docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}; \
           fi
