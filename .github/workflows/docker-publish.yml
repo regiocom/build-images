@@ -82,5 +82,5 @@ jobs:
           # If the version is named latest then additionally tag the docker image only with the version and push it to Dockerhub
           if [ ${{ matrix.name }} == "latest" ]; then \
           docker tag ghcr.io/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }} ghcr.io/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}; \
-          docker ghcr.io/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}; \
+          docker push ghcr.io/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}; \
           fi
