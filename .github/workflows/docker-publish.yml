@@ -66,21 +66,21 @@ jobs:
           echo $BUILD_ARGS
 
           # Login to Github Docker Package Registry
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+          echo "${{ secrets.CONTAINER_REGISTRY_PAT }}" | docker login ghcr.io -u ${{ secrets.CONTAINER_REGISTRY_USERNAME }} --password-stdin
 
           # Build and Tag Image
           docker build . \
           --file ${IMAGE_NAME}/Dockerfile \
-          --tag docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }} \
-          --tag docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${{ matrix.name }} \
+          --tag ghcr.io/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }} \
+          --tag ghcr.io/regiocom/build-images/${IMAGE_NAME}:${{ matrix.name }} \
           $BUILD_ARGS
 
           # Push Image to Dockerhub
-          docker push docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }}
-          docker push docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${{ matrix.name }}
+          docker push ghcr.io/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }}
+          docker push ghcr.io/regiocom/build-images/${IMAGE_NAME}:${{ matrix.name }}
 
           # If the version is named latest then additionally tag the docker image only with the version and push it to Dockerhub
           if [ ${{ matrix.name }} == "latest" ]; then \
-          docker tag docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }} docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}; \
-          docker push docker.pkg.github.com/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}; \
+          docker tag ghcr.io/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}-${{ matrix.name }} ghcr.io/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}; \
+          docker ghcr.io/regiocom/build-images/${IMAGE_NAME}:${RELEASE_VERSION}; \
           fi
