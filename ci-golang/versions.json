@@ -3,14 +3,14 @@
     {
       "name": "lts",
       "dependencies": {
-        "go": "1.14.9",
+        "go": "1.14.13",
         "golangci": "v1.31.0"
       }
     },
     {
       "name": "latest",
       "dependencies": {
-        "go": "1.15.2",
+        "go": "1.15.6",
         "golangci": "v1.31.0"
       }
     }
