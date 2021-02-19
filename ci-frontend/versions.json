@@ -5,7 +5,7 @@
       "dependencies": {
         "docker_compose": "1.27.2",
         "node": "14.x",
-        "go": "1.16.0"
+        "go": "1.16"
       }
     },
     {
@@ -13,7 +13,7 @@
       "dependencies": {
         "docker_compose": "1.27.4",
         "node": "15.x",
-        "go": "1.16.0"
+        "go": "1.16"
       }
     }
   ]
