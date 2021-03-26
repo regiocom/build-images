@@ -1,0 +1,10 @@
+{
+  "include": [
+    {
+      "name": "lts",
+      "dependencies": {
+        "k3d": "v4.3.0"
+      }
+    }
+  ]
+}
