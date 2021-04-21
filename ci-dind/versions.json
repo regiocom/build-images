@@ -1,0 +1,10 @@
+{
+  "include": [
+    {
+      "name": "latest",
+      "dependencies": {
+        "dind": "docker:20.10.6-dind"
+      }
+    }
+  ]
+}
