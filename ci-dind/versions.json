@@ -3,7 +3,7 @@
     {
       "name": "latest",
       "dependencies": {
-        "dind": "docker:20.10.6-dind"
+        "dind": "20.10.6-dind"
       }
     }
   ]
