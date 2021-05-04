@@ -1,0 +1,13 @@
+{
+  "include": [
+    {
+      "name": "node-10-openjdk-8",
+      "dependencies": {
+        "alpine": "3.11",
+        "nodejs": "10.24.1",
+        "openjdk": "8",
+        "maven": "3.8.1"
+      }
+    }
+  ]
+}
