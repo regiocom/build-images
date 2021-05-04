@@ -15,7 +15,8 @@ RUN apk update && \
     curl -fsSL -o /tmp/apache-maven.tar.gz ${BASE_URL}/apache-maven-${maven}-bin.tar.gz && \
     tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 && \
     rm -f /tmp/apache-maven.tar.gz && \
-    ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
+    ln -s /usr/share/maven/bin/mvn /usr/bin/mvn && \
+    apk add python2
 
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
