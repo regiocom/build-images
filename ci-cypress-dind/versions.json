@@ -1,0 +1,12 @@
+{
+  "include": [
+    {
+      "name": "node14.16.0-chrome90-ff88",
+      "dependencies": {
+        "node": "14.16.0",
+        "chrome": "90",
+        "firefox": "88"
+      }
+    }
+  ]
+}
