@@ -1,0 +1,13 @@
+{
+  "include": [
+    {
+      "name": "latest",
+      "dependencies": {
+        "kubectl": "1.19.0",
+        "kustomize": "4.1.3",
+        "helm": "3.6.0",
+        "go": "1.16"
+      }
+    }
+  ]
+}
