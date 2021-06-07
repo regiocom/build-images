@@ -2,7 +2,7 @@
 
 ## Usage
 
-Run it as a setup job to create `shared-vars.sh` file containing info about current version.
+Run it as a setup job to create `shared-vars.env` file containing info about current version.
 
 ```yaml
 variables:
@@ -12,29 +12,37 @@ shared-vars:
   image: regiocom/ci-gitversion
   stage: setup
   script:
-    - create-shared-vars
+    - create-shared-vars.sh
   artifacts:
+    reports:
+      # Pass shared variables as environment variables to next jobs
+      dotenv: shared-vars.env
     paths:
-      - shared-vars.sh
+      # Pass shared variables as file to next jobs
+      - shared-vars.env
 ```
 
-Use it durring another job
+### Specifying a custom GitVersion.yml configuration
+
+A path to a custom GitVersion configuration file may be specified by setting the environment variable 
+`GIT_VERSION_CONFIG_PATH`.
 
 ```yaml
-build_go:
-  stage: build
-  image: regiocom/ci-golang
-  before_script:
-    # LOAD the env variables
-    - ./shared-vars.sh
+variables:
+  CONTAINER_BASE_NAME: gitlab.com/my-group/my-repo/
+
+shared-vars:
+  image: regiocom/ci-gitversion
+  stage: setup
+  variables: 
+    GIT_VERSION_CONFIG_PATH: "./GitVersion.yml"
   script:
-    - ...
-```
-
-Exported VARS:
-
-```bash
-export GIT_VERSION=0.1.0-add-ci-pipeline.18
-export IMAGE_VERSION_TAG=gitlab.com/my-group/my-repo/$CONTAINER_IMAGE_NAME:$GIT_VERSION
-export GOPRIVATE=gitlab.com/vlekapp/framework
+    - create-shared-vars.sh
+  artifacts:
+    reports:
+      # Pass shared variables as environment variables to next jobs
+      dotenv: shared-vars.env
+    paths:
+      # Pass shared variables as file to next jobs
+      - shared-vars.env
 ```
