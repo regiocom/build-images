@@ -12,8 +12,8 @@ fi
 echo "CREATE SHARED VARIABLES"
 
 # write GIT_VERSION to shared-vars.sh and pass it to the next stages
-export FULLSEMVER=$(/tools/dotnet-gitversion /output json /config "${GIT_VERSION_CONFIG_PATH}" /showvariable SemVer)
-echo "GIT_VERSION=${FULLSEMVER}" >> shared-vars.env
+export MAJOR_MINOR_PATCH=$(/tools/dotnet-gitversion /output json /config "${GIT_VERSION_CONFIG_PATH}" /showvariable MajorMinorPatch)
+echo "GIT_VERSION=${MAJOR_MINOR_PATCH}" >> shared-vars.env
 
 chmod +x shared-vars.env
 
