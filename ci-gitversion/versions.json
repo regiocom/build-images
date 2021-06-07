@@ -3,7 +3,7 @@
     {
       "name": "latest",
       "dependencies": {
-        "gitversion": "5.5.1-linux-alpine.3.10-x64-netcoreapp3.1"
+        "gitversion": "5.6.11-alpine.3.12-x64-5.0"
       }
     }
   ]
