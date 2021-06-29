@@ -8,6 +8,15 @@
         "openjdk": "8",
         "maven": "3.8.1"
       }
+    },
+    {
+      "name": "node-14-openjdk-8",
+      "dependencies": {
+        "alpine": "3.13",
+        "nodejs": "14.17.1",
+        "openjdk": "8",
+        "maven": "3.8.1"
+      }
     }
   ]
 }
